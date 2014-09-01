@@ -5,89 +5,108 @@ $(function() {
   Dashing.numColumns =6 
 });
 </script>
+
 <% content_for :title do %>ME_Dash<% end %>
 <% settings.screens.each do |screen| %>
   <div class="gridster">
     <ul>
 
-      <li data-row="1" data-col="1" data-sizex="1" data-sizey="2">
-        <div data-id="<%=screen%>_avrg" data-view="Zabbix" style="background-color:#541F14" data-title="average"></div>
+      <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+        <div data-id="<%=screen%>_avrg" data-view="Zabbix" data-title="average" style="background-color:#541F14"></div>
       </li>
 
-      <li data-row="1" data-col="2" data-sizex="1" data-sizey="2">
-        <div data-id="<%=screen%>_warn" data-view="Zabbix" style="background-color:#541F14" data-title="warning"></div>
+      <li data-row="1" data-col="2" data-sizex="1" data-sizey="1">
+        <div data-id="<%=screen%>_warn" data-view="Zabbix" data-title="warning" style="background-color:#541F14"></div>
       </li>
 
-      <li data-row="1" data-col="3" data-sizex="1" data-sizey="2">
-        <div data-id="<%=screen%>_high" data-view="Zabbix" style="background-color:#541F14" data-title="high"></div>
+      <li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
+        <div data-id="<%=screen%>_high" data-view="Zabbix" data-title="high" style="background-color:#541F14"></div>
       </li>
 
-      <li data-row="1" data-col="4" data-sizex="1" data-sizey="2">
-        <div data-id="<%=screen%>_disa" data-view="Zabbix" style="background-color:#541F14" data-title="disaster"></div>
+      <li data-row="1" data-col="4" data-sizex="1" data-sizey="1">
+        <div data-id="<%=screen%>_disa" data-view="Zabbix" data-title="disaster" style="background-color:#541F14"></div>
       </li>
 
-      <li data-row="1" data-col="5" data-sizex="2" data-sizey="2">
-        <div data-id="<%=screen%>_list" data-view="ZabbixList" data-title="Last active triggers"></div>
+      <li data-row="1" data-col="5" data-sizex="2" data-sizey="1">
+        <div data-id="<%=screen%>_list" data-view="ZabbixList" data-title="Last active triggers" style="background-color:#541F14"></div>
       </li>
 
       <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
-        <div data-id="dc01_meter" data-view="Meter" data-title="CPU % Load" data-min="0" data-max="100" data-moreinfo="MAJORDC01"></div>
+        <div id="meters" data-id="dc01_meter" data-view="Meter" data-title="CPU % Load" data-class="title" data-min="0" data-max="100" data-moreinfo="MAJORDC01" style="background-color:#541F14"></div>
       </li>
 
       <li data-row="2" data-col="2" data-sizex="1" data-sizey="1">
-        <div data-id="sql_meter" data-view="Meter" data-title="CPU % Load" data-min="0" data-max="100" data-moreinfo="MAJORSQL"></div>
+        <div id="meters" data-id="sql_meter" data-view="Meter" data-title="CPU % Load" data-min="0" data-max="100" data-moreinfo="MAJORSQL" style="background-color:#541F14"></div>
       </li>
 
       <li data-row="2" data-col="3" data-sizex="1" data-sizey="1">
-        <div data-id="dc01_ram" data-view="Meter" data-title="RAM Use %" data-moreinfo="MAJORDC01" data-min="0" data-max="100"></div>
+        <div id="meters" data-id="dc01_ram" data-view="Meter" data-title="RAM Use %" data-moreinfo="MAJORDC01" data-min="0" data-max="100" style="background-color:#541F14"></div>
       </li>
 
       <li data-row="2" data-col="4" data-sizex="1" data-sizey="1">
-        <div data-id="sql_ram" data-view="Meter" data-title="RAM Use %" data-moreinfo="MAJORSQL" data-min="0" data-max="100"></div>
+        <div id="meters" data-id="sql_ram" data-view="Meter" data-title="RAM Use %" data-moreinfo="MAJORSQL" data-min="0" data-max="100" style="background-color:#541F14"></div>
       </li>
 
       <li data-row="2" data-col="5" data-sizex="1" data-sizey="1">
-        <div data-id="dc01_hdd" data-view="Meter" data-title="HDD Use %" data-moreinfo="MAJORDC01" data-min="0" data-max="100"></div>
+        <div id="meters" data-id="dc01_hdd" data-view="Meter" data-title="HDD Use %" data-moreinfo="MAJORDC01" data-min="0" data-max="100" style="background-color:#541F14"></div>
       </li>
       
       <li data-row="2" data-col="6" data-sizex="1" data-sizey="1">
-        <div data-id="sql_hdd" data-view="Meter" data-title="HDD Use %" data-moreinfo="MAJORSQL" data-min="0" data-max="100"></div>
+        <div id="meters" data-id="sql_hdd" data-view="Meter" data-title="HDD Use %" data-moreinfo="MAJORSQL" data-min="0" data-max="100" style="background-color:#541F14"></div>
       </li>
 
+      <li data-row="3" data-col="1" data-sizex="1" data-sizey="1">
+        <div id="meters" data-id="mnas_cpu" data-view="Meter" data-title="CPU % Load" data-class="title" data-min="0" data-max="100" data-moreinfo="MAJORNAS" style="background-color:#541F14"></div>
+      </li>
+
+      <li data-row="3" data-col="3" data-sizex="1" data-sizey="1">
+        <div id="meters" data-id="mnas_ram" data-view="Meter" data-title="RAM Use %" data-moreinfo="MAJORNAS" data-min="0" data-max="100" style="background-color:#541F14"></div>
+      </li>
+
+      <li data-row="3" data-col="5" data-sizex="1" data-sizey="1">
+        <div id="meters" data-id="mnas_hdd" data-view="Meter" data-title="HDD Use %" data-moreinfo="MAJORNAS" data-min="0" data-max="100" style="background-color:#541F14"></div>
+      </li>
 
     </ul>
-    
-    <div data-id="ticker" data-view="Ticker" data-scroll_orientation="horizontal" style="display: none;" ></div>
-
   </div>
 
 <!-- PAGE 2 OF THE DASHBOARD -->
   <div class="gridster">
-
     <ul>
-<!--
-      <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
-        <div data-id="nas_storage" data-view="Meter" data-title="NAS Space %" data-moreinfo="MAJONAS" data-min="0", data-max="100"></div>  
+
+      <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+        <div id="backups" data-id="majornas_backups" data-view="List" data-unordered="true" data-title="Local - Backups" data-moreinfo="" style="background-color:#541F14"></div>
       </li>
--->
+
+      <li data-row="1" data-col="2" data-sizex="1" data-sizey="1">
+        <div id="backups" data-id="offsite_backups" data-view="List" data-unordered="true" data-title="Offsite - Backups" data-moreinfo="" style="background-color:#541F14"></div>
+      </li>
+
+      <li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
+        <div id="backups" data-id="backups_diff" data-view="List" data-unordered="true" data-title="Onsite - Offsite" data-moreinfo="" style="background-color:#541F14"></div>
+      </li>
+
+      <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
+        <div id="status" data-id="ftp_status" data-view="Text" data-title="Site Status" data-moreinfo="Exavault FTP" style="background-color:#541F14"></div>
+      </li>
+
       <li data-row="2" data-col="2" data-sizex="1" data-sizey="1">
-        <div data-id="ftp_storage" data-view="Meter" data-title="FTP Space %" data-moreinfo="Exavault FTP" data-min="0", data-max="100"></div>
+        <div id="status" data-id="me_status" data-view="Text" data-title="Site Status" data-moreinfo="Major Energy" style="background-color:#541F14"></div>
       </li>
 
       <li data-row="2" data-col="3" data-sizex="1" data-sizey="1">
-        <div data-id="ftp_status" data-view="Text" data-title="Site Status" data-moreinfo="Exavault FTP"></div>
+        <div id="status" data-id="rp_status" data-view="Text" data-title="Site Status" data-moreinfo="Respond Power" style="background-color:#541F14"></div>
       </li>
 
-      <li data-row="2" data-col="4" data-sizex="1" data-sizey="1">
-        <div data-id="me_status" data-view="Text" data-title="Site Status" data-moreinfo="Major Energy"></div>
+      <li data-row="1" data-col="6" data-sizex="1" data-sizey="1">
+        <div id="meters" data-id="ftp_storage" data-view="Meter" data-title="FTP Space %" data-min=0 data-max=100 style="background-color:#541F14">
       </li>
 
-      <li data-row="2" data-col="5" data-sizex="1" data-sizey="1">
-        <div data-id="rp_status" data-view="Text" data-title="Site Status" data-moreinfo="Respond Power"></div>
+      <li data-row="2" data-col="6" data-sizex="1" data-sizey="1">
+        <div id="status" data-id="sroom_status" data-view="Text" data-title="Server Room" data-moreinfo="Door Position" style="background-color:#541F14"></div>
       </li>
-      
+
     </ul>
-
   </div>
 
 <% end %>

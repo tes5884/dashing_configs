@@ -3,9 +3,9 @@ require 'json'
 require 'active_support/core_ext/numeric/time'
 
 ########################## CONSTANTS ##############################
-SERVER = "http://192.168.1.22/zabbix"
-USER = "user"
-PASSWORD = "123456"
+SERVER = "http://192.168.12.121/zabbix"
+USER = ""
+PASSWORD = ""
 MINPRIORITY = 2
 ANIMATE = 5.minutes
 
@@ -218,6 +218,19 @@ srvDoor = serv.run { Zabby::Item.get "output" => "extend", "hostids" => "10107",
 srvDoorPrsd = JSON.parse(srvDoor.to_json)
 srvDoorVal = srvDoorPrsd[0]["lastvalue"].to_i
 ##################################################################################################################################
+###MNAS CPU, RAM, and HDD
+mnasCpu = serv.run { Zabby::Item.get "output" => "extend", "hostids" => "10109", "filter" => { "key_"=>"system.cpu.util[,user]" } }
+mnasCpuParsed = JSON.parse(mnasCpu.to_json)
+mnasCpuVal = mnasCpuParsed[0]["lastvalue"].to_i
+
+mnasRam = serv.run { Zabby::Item.get "output" => "extend", "hostids" => "10109", "filter" => { "key_"=>"MemoryUsedPercent" } }
+mnasRamParsed = JSON.parse(mnasRam.to_json)
+mnasRamVal = mnasRamParsed[0]["lastvalue"].to_i
+
+mnasHdd = serv.run { Zabby::Item.get "output" => "extend", "hostids" => "10109", "filter" => { "key_"=>"CheckBackups.Backups" } }
+mnasHddParsed = JSON.parse(mnasHdd.to_json)
+mnasHddVal = mnasHddParsed[0]["lastvalue"].to_i
+##################################################################################################################################
 ###Send events to widgets
   send_event('dc01_meter', {value: dc01Cpu})
   send_event('sql_meter', {value: sqlCpu})
@@ -236,6 +249,10 @@ srvDoorVal = srvDoorPrsd[0]["lastvalue"].to_i
   send_event('majornas_backups', { items: mnasList})
   send_event('offsite_backups', { items: ofstList})
   send_event('backups_diff', {items: diffList})
+
+  send_event('mnas_cpu', {value: mnasCpuVal})
+  send_event('mnas_ram', {value: mnasRamVal})
+
 
   if srvDoorVal == 0
     send_event('sroom_status', {text: "Closed", status: "ok"})
